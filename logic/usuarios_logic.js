@@ -38,9 +38,20 @@ async function actualizarUsuario(email, body){
     return usuario;
 }
 
+//Función asíncrona para inactivar un usuario
+async function desactivarUsuario(email){
+    let usuario = await Usuario.findOneAndUpdate({"email": email}, {
+        $set: {
+            estado: false
+        }
+    }, {new: true});
+    return usuario;
+}
+
 
 module.exports = {
     schema,
     crearUsuario,
-    actualizarUsuario
+    actualizarUsuario,
+    desactivarUsuario
 }
