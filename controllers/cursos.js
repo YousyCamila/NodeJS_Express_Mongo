@@ -22,6 +22,16 @@ ruta.post('/', (req, res) => {
   })
 });
 
+// Endpoint de tipo PUT para el recurso CURSOS
+ruta.put('/:id', (req, res) => {
+  let resultado = logic.actualizarCurso(req.params.id, req.body);
+  resultado.then(curso => {
+    res.json(curso)
+  }).catch(err => {
+    res.status(400).json(err)
+  })
+})
+
 
 
 

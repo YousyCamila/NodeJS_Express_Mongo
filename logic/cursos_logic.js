@@ -11,11 +11,21 @@ async function crearCurso(body) {
     });
     return await curso.save();
 }
-
+// Función asíncrona para actualizar cursos
+async function actualizarCurso(id, body){
+    let curso = await Curso.findByIdAndUpdate(id, {
+        $set: {
+            titulo: body.titulo,
+            descripcion: body.descripcion,
+        }
+    }, {new: true});
+    return curso;
+}
 
 module.exports = {
 
-    crearCurso
+    crearCurso,
+    actualizarCurso
 }
 
 
