@@ -3,6 +3,16 @@ const Curso = require('../models/curso_model');
 const logic = require('../logic/cursos_logic');
 const ruta = express.Router();
 
+// Endpoint de tipo GET para el recurso Cursos
+ruta.get('/', (req, res) => {
+  let resultado = logic.listarCursosActivos();
+  resultado.then(cursos => {
+    res.json(cursos);
+  }).catch(err => {
+    res.status(400).json(err);
+  })
+});
+// Endpoint de tipo GET para
 ruta.get('/', (req, res) => {
   res.json('Respuesta a petición GET de CURSOS funcionando correctamente...');
 });

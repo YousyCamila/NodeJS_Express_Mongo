@@ -31,12 +31,18 @@ async function desactivarCurso(id) {
     }, { new: true });
     return curso;
 }
+// Función asíncrona para listar los cursos activos
+async function listarCursosActivos(){
+    let cursos = await Curso.find({"estado": true});
+    return cursos;
+}
 
 module.exports = {
 
     crearCurso,
     actualizarCurso,
-    desactivarCurso
+    desactivarCurso,
+    listarCursosActivos
 }
 
 
