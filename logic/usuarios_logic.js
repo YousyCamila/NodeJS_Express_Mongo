@@ -17,6 +17,7 @@ const schema = Joi.object({
         .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'edu', 'co'] } })
 });
 
+
 // Función asíncrona para crear un objeto de tipo usuario
 async function crearUsuario(body){
     let usuario = new Usuario({
@@ -48,10 +49,18 @@ async function desactivarUsuario(email){
     return usuario;
 }
 
+   //funcion asincrona de litar todos los usuarios activos 
+   async function listarUsuarioActivos() {
+    let usuarios = await Usuario.find({"estado": true});
+    return usuarios;
+}
+
+
 
 module.exports = {
     schema,
     crearUsuario,
     actualizarUsuario,
-    desactivarUsuario
+    desactivarUsuario,
+    listarUsuarioActivos
 }
