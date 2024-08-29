@@ -32,6 +32,16 @@ ruta.put('/:id', (req, res) => {
   })
 })
 
+// Endpoint de tipo DELETE para el recurso CURSOS
+ruta.delete('/:id', (req, res) => {
+  let resultado = logic.desactivarCurso(req.params.id);
+  resultado.then(curso => {
+    res.json(curso);
+  }).catch(err => {
+    res.status(400).json(err);
+  })
+})
+
 
 
 

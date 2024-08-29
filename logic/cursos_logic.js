@@ -12,20 +12,31 @@ async function crearCurso(body) {
     return await curso.save();
 }
 // Función asíncrona para actualizar cursos
-async function actualizarCurso(id, body){
+async function actualizarCurso(id, body) {
     let curso = await Curso.findByIdAndUpdate(id, {
         $set: {
             titulo: body.titulo,
             descripcion: body.descripcion,
         }
-    }, {new: true});
+    }, { new: true });
+    return curso;
+}
+
+// Función asíncrona para inactivar cursos
+async function desactivarCurso(id) {
+    let curso = await Curso.findByIdAndUpdate(id, {
+        $set: {
+            estado: false
+        }
+    }, { new: true });
     return curso;
 }
 
 module.exports = {
 
     crearCurso,
-    actualizarCurso
+    actualizarCurso,
+    desactivarCurso
 }
 
 
